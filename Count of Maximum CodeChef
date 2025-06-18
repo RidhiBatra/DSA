@@ -1,0 +1,83 @@
+✅ What You Have to Do:
+You will be given a list of numbers.
+Your job is to find:
+
+Which number comes the most times in the list.
+
+How many times that number comes.
+
+🟡 If two numbers come the same number of times, choose the smaller number.
+
+🔢 Example:
+If the list is:
+
+Copy
+Edit
+1 2 2 3 1 2
+1 comes 2 times
+
+2 comes 3 times ✅
+
+3 comes 1 time
+
+👉 So the answer is:
+2 3
+(because 2 comes the most — 3 times)
+
+Another example:
+
+Copy
+Edit
+1 1 2 2 3
+1 comes 2 times
+
+2 comes 2 times
+
+3 comes 1 time
+
+👉 Both 1 and 2 come 2 times, but 1 is smaller, so the answer is:
+1 2
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;  // Read number of test cases
+
+    while (T--) {
+        int N;
+        cin >> N;
+
+        int A[100];  // Array for input (since N ≤ 100)
+        int freq[10001] = {0};  // Frequency array (value range 1–10000)
+
+        // Read the array and count frequency
+        for (int i = 0; i < N; i++) {
+            cin >> A[i];
+            freq[A[i]]++;  // Count how many times A[i] appears
+        }
+
+        int maxFreq = 0;   // Highest frequency found
+        int ans = 0;       // Number with highest frequency
+
+        // Loop through possible values (1 to 10000)
+        for (int i = 1; i <= 10000; i++) {
+            if (freq[i] > maxFreq) {
+                maxFreq = freq[i];
+                ans = i;
+            } else if (freq[i] == maxFreq && i < ans) {
+                ans = i;  // If same freq, choose smaller number
+            }
+        }
+
+        // Print result: number and its frequency
+        cout << ans << " " << maxFreq << endl;
+    }
+
+    return 0;
+}
+
