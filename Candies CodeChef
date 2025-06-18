@@ -1,0 +1,129 @@
+🧁 Candies Problem – Simple Summary
+Abhi has to sell 2 types of candies in N cities.
+
+He mixed up the prices of both candies into one list of 2N numbers.
+
+🎯 Your Task:
+Check if it's possible to split that list into two groups of N prices, where:
+
+Each group has all different prices (no duplicates in a group).
+
+✅ Main Rule:
+Any number in the list should appear at most 2 times.
+
+Why?
+
+Once in each group is okay.
+
+But if a number comes 3 or more times, it must repeat in at least one group — ❌ Not allowed.
+
+📥 Input:
+T = number of test cases
+
+For each test case:
+
+N = number of cities
+
+2N numbers = mixed prices
+
+📤 Output:
+Print "Yes" if you can split the list into two groups with all different numbers.
+
+Otherwise, print "No"
+
+🧠 Example:
+Input:
+
+ini
+Copy
+Edit
+N = 3  
+A = [4, 8, 4, 6, 7, 3]
+4 appears 2 times ✅
+
+8, 6, 7, 3 appear once ✅
+→ Can be split → Yes
+
+Input:
+
+ini
+Copy
+Edit
+N = 3  
+A = [4, 8, 6, 8, 7, 8]
+8 appears 3 times ❌ → Not possible
+→ No
+
+
+✨ Summary Table:
+Method          	Time Complexity	          Works with Ai ≤ 1e9	               Simplicity	            Speed
+Hash Map	            O(N)	                      ✅	                            Medium	             Fast
+Fixed-size Array	    O(N)	                      ❌(Only up to 1e6)	             Easy	               Very Fast
+Sort & Check	        O(N log N)	                ✅                             	Easy	               Moderate
+Early Exit (Map)	    O(N)	                      ✅	                            Medium	             Fastest
+STL Multiset	        O(N log N)	                ✅                             Medium	             Slower
+
+
+
+solution code:
+
+#include <iostream>
+#include <vector>
+#include <algorithm>  // for sort function
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;  // Step 1: Read the number of test cases
+
+    while (T--) {
+        int N;
+        cin >> N;  // Step 2: Read the number of cities (N)
+
+        vector<int> A(2 * N);  // Step 3: Create a vector to store 2N prices
+
+        // Step 4: Read all 2N prices into the vector
+        for (int i = 0; i < 2 * N; i++) {
+            cin >> A[i];
+        }
+
+        // Step 5: Sort the prices so that duplicates come next to each other
+        sort(A.begin(), A.end());
+
+        // Step 6: Check if any number appears more than 2 times
+        bool isValid = true;  // Assume the list is valid initially
+        int count = 1;        // Count frequency of current number (at least 1 occurrence)
+
+        for (int i = 1; i < 2 * N; i++) {
+            if (A[i] == A[i - 1]) {
+                // Same as previous number → increase count
+                count++;
+
+                // If any number appears more than twice, it's invalid
+                if (count > 2) {
+                    isValid = false;
+                    break;  // No need to check further
+                }
+            } else {
+                // New number → reset count
+                count = 1;
+            }
+        }
+
+        // Step 7: Print the result based on the flag
+        if (isValid) {
+            cout << "Yes" << endl;  // It's possible to split into two distinct groups
+        } else {
+            cout << "No" << endl;   // Not possible due to over-repeated number
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
