@@ -1,0 +1,30 @@
+
+
+1  2  3  4  5
+6  7  8  9  10
+11 12 13 14 15
+16 17 18 19 20
+21 22 23 24 25
+
+
+rowstart = 0, rowend = 4, colstart = 0, colend = 4
+while(rowstart <= rowend && colstart <= colend){         //when we dont know till how much iteration we have to do we use while loop... if we know then use for loop
+
+1.)   for(int j= cs ;j<ce;j++){
+          print(arr[rs][j]
+          }
+          rs++;
+2.)   for(k=rs;k<=re;k++)
+      {
+        print(arr[k][ce]);
+      }
+      ce--;
+3.)   for (m=ce;m>=cs;m--){
+        print(arr[re][m]
+          }
+      re--
+4.)  for(p=re;p>=rs;p--){
+        print(arr[p][cs]
+      }
+      cs++
+      }
