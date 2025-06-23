@@ -1,0 +1,25 @@
+🔵 Problem:
+Aapko ek array diya gaya hai jisme sirf 0 aur 1 hain. Aapko for loop ka use karke 0s ko left side aur 1s ko right side karna hai.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[] = {1, 0, 1,0,1,1,1, 0};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    int index = 0;  // 0s kahan rakhne hain uska pointer
+
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == 0) {
+            // mil gaya 0 — usse index wali jagah bhej do
+            swap(arr[i], arr[index]);
+            index++;
+        }
+    }
+
+    // Output
+    cout << "Sorted array: ";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+}
