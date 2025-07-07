@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int digit_sum(int n) {
+    int sum = 0;
+    while (n > 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    if (sum < 10) {
+        cout << "Priyanshu says ans is " << sum << endl;
+        return sum;
+    } else {
+        cout << "Abhinay says " << sum << endl;
+        int result = digit_sum(sum);  // Recursive call
+        cout << "Shivam says " << sum << endl;
+        return result;
+    }
+}
+
+int main() {
+    int n = 991;
+    int finalResult = digit_sum(n);
+    cout << "Rishi says "<< finalResult << endl;
+    return 0;
+}
